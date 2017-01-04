@@ -7,7 +7,7 @@ package Vistas;
 
 /**
  *
- * @author root
+ * @author Bonber Rash & ConnorHack
  */
 public class MainView extends javax.swing.JFrame {
 
