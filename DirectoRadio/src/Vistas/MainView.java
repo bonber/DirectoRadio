@@ -5,6 +5,16 @@
  */
 package Vistas;
 
+import java.awt.List;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 /**
  *
  * @author Bonber Rash & ConnorHack
@@ -16,6 +26,13 @@ public class MainView extends javax.swing.JFrame {
      */
     public MainView() {
         initComponents();
+        try {
+            setLanguage("es");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -27,18 +44,50 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        barraSuperor = new javax.swing.JToolBar();
-        button1 = new java.awt.Button();
+        panel1 = new java.awt.Panel();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jList1 = new javax.swing.JList<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        m_language = new javax.swing.JMenu();
+        m_language_es = new javax.swing.JCheckBoxMenuItem();
+        m_language_eus = new javax.swing.JCheckBoxMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        barraSuperor.setFloatable(false);
-        barraSuperor.setRollover(true);
+        jFileChooser1.setDialogTitle("");
+        jFileChooser1.setDragEnabled(true);
+        jFileChooser1.setMultiSelectionEnabled(true);
 
-        button1.setLabel("Grabar");
+        jList1.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.setDragEnabled(true);
+        jList1.setDropMode(javax.swing.DropMode.INSERT);
+        jScrollPane1.setViewportView(jList1);
+
+        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
+        panel1.setLayout(panel1Layout);
+        panel1Layout.setHorizontalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        panel1Layout.setVerticalGroup(
+            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel1Layout.createSequentialGroup()
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 27, Short.MAX_VALUE))
+            .addComponent(jScrollPane1)
+        );
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -46,29 +95,73 @@ public class MainView extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        m_language.setText("Idioma");
+
+        m_language_es.setSelected(true);
+        m_language_es.setText("Castellano");
+        m_language_es.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_language_esActionPerformed(evt);
+            }
+        });
+        m_language.add(m_language_es);
+
+        m_language_eus.setSelected(true);
+        m_language_eus.setText("Euskera");
+        m_language_eus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                m_language_eusActionPerformed(evt);
+            }
+        });
+        m_language.add(m_language_eus);
+
+        jMenuBar1.add(m_language);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(barraSuperor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(925, Short.MAX_VALUE))
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 209, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(barraSuperor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(374, 374, 374))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void m_language_eusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_language_eusActionPerformed
+        
+        try {
+            setLanguage("eus");
+            m_language_eus.setSelected(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_m_language_eusActionPerformed
+
+    private void m_language_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_language_esActionPerformed
+        
+        try {
+            setLanguage("es");
+            m_language_es.setSelected(true);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_m_language_esActionPerformed
 
     /**
      * @param args the command line arguments
@@ -96,20 +189,49 @@ public class MainView extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainView().setVisible(true);
+                new MainView().setVisible(true);   
             }
+            
+            
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToolBar barraSuperor;
-    private java.awt.Button button1;
+    private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu m_language;
+    private javax.swing.JCheckBoxMenuItem m_language_es;
+    private javax.swing.JCheckBoxMenuItem m_language_eus;
+    private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
+
+   private void setLanguage(String lng) throws FileNotFoundException, IOException {
+       
+        //Vaciamos los checks
+        m_language_es.setSelected(false);
+        m_language_eus.setSelected(false);
+        
+        //Leemos el fichero
+        BufferedReader in = new BufferedReader(new FileReader("languages/"+lng+".lng"));
+        String line;
+        while((line = in.readLine()) != null)
+        {
+            switch (line.split("=")[0]) {
+                case "m_language":
+                    m_language.setText(line.split("=")[1]); 
+                    break;
+                
+            }
+        }
+        in.close();
+    }
+    
 }
