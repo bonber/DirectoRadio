@@ -28,6 +28,7 @@ public class MainView extends javax.swing.JFrame {
         initComponents();
         try {
             setLanguage("es");
+            m_language_es.setSelected(true);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -228,7 +229,12 @@ public class MainView extends javax.swing.JFrame {
                 case "m_language":
                     m_language.setText(line.split("=")[1]); 
                     break;
-                
+                case "m_language_es":
+                    m_language_es.setText(line.split("=")[1]); 
+                    break;
+                case "m_language_eus":
+                    m_language_eus.setText(line.split("=")[1]); 
+                    break;
             }
         }
         in.close();
