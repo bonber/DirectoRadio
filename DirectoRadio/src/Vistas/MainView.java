@@ -5,6 +5,7 @@
  */
 package Vistas;
 
+import directoradio.Audio;
 import directoradio.DragListener;
 import directoradio.Language;
 import java.awt.List;
@@ -19,6 +20,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javazoom.jl.decoder.JavaLayerException;
 
 /**
  *
@@ -27,14 +29,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class MainView extends javax.swing.JFrame {
 
     Language lang;//Idioma por defecto
-    
+    Audio a = new Audio();
     /**
      * Creates new form MainView
      */
     public MainView() {
         initComponents();
         lang = new Language("es");
+        m_language_es.setSelected(true);
         connectToDragDrop();
+        
     }
 
     /**
@@ -49,7 +53,9 @@ public class MainView extends javax.swing.JFrame {
         panel1 = new java.awt.Panel();
         jFileChooser1 = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        ListaRepro = new javax.swing.JList<>();
+        playListaRepro = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -66,32 +72,53 @@ public class MainView extends javax.swing.JFrame {
         jFileChooser1.setDragEnabled(true);
         jFileChooser1.setMultiSelectionEnabled(true);
 
-        jList1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+        ListaRepro.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jList1MouseDragged(evt);
+                ListaReproMouseDragged(evt);
             }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(ListaRepro);
+
+        playListaRepro.setText("Play");
+        playListaRepro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playListaReproActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Pause / Reanude");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(playListaRepro)
+                    .addComponent(jButton1))
+                .addGap(0, 66, Short.MAX_VALUE))
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(panel1Layout.createSequentialGroup()
                 .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 27, Short.MAX_VALUE))
             .addGroup(panel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addComponent(playListaRepro)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         FileFilter audioFilter = new FileNameExtensionFilter("MP3 File","mp3");
@@ -134,7 +161,7 @@ public class MainView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 287, Short.MAX_VALUE))
+                .addGap(0, 224, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,11 +189,38 @@ public class MainView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_m_language_esActionPerformed
 
-    private void jList1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseDragged
+    private void ListaReproMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ListaReproMouseDragged
         
        
         
-    }//GEN-LAST:event_jList1MouseDragged
+    }//GEN-LAST:event_ListaReproMouseDragged
+
+    private void playListaReproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListaReproActionPerformed
+        
+        
+        try {
+            a.reproducirMp3(ListaRepro.getSelectedValue());
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_playListaReproActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        if (a.isPausa()) {
+            a.setPausa(false);
+        }else{
+            a.setPausa(true);
+        }
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,8 +260,9 @@ public class MainView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> ListaRepro;
+    private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -216,13 +271,14 @@ public class MainView extends javax.swing.JFrame {
     public static javax.swing.JCheckBoxMenuItem m_language_es;
     public static javax.swing.JCheckBoxMenuItem m_language_eus;
     private java.awt.Panel panel1;
+    private javax.swing.JButton playListaRepro;
     // End of variables declaration//GEN-END:variables
 
     private void connectToDragDrop(){
-        DragListener d=new DragListener(jList1);
+        DragListener d=new DragListener(ListaRepro);
 
          //SET TARGET TO JFRAME
-        new DropTarget(jList1,d);
+        new DropTarget(ListaRepro,d);
     }
     
 }
