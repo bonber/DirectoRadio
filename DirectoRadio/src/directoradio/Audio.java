@@ -5,11 +5,17 @@
  */
 package directoradio;
 
+import Vistas.MainView;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioFileFormat;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
@@ -22,6 +28,24 @@ public class Audio {
     static boolean pausa = false;
     
     public void reproducir(String fichero){
+        int index = fichero.lastIndexOf('.');
+        String ext =  fichero.substring(index + 1);
+        
+        switch (ext) {
+            case "mp3":
+                reproducirMp3(fichero);
+                break;
+            case "wav":
+                reproducirWav(fichero);
+                break;
+            default:
+                JFrame frame = new JFrame();
+                JOptionPane.showMessageDialog(frame,
+    "Formato no soportado.");
+        }
+    }
+    
+    public void reproducirWav(String fichero){
         try {
             
             // Se obtiene un Clip de sonido
@@ -46,28 +70,34 @@ public class Audio {
         }
     }
     
-    public void reproducirMp3(String fichero) throws FileNotFoundException,
-          InterruptedException,
-          JavaLayerException{
+    public void reproducirMp3(String fichero) {
         
-        final Player pl = new Player(new FileInputStream(fichero));
+        try {
+            final Player pl = new Player(new FileInputStream(fichero));
 
-        new Thread() {
-           public void run() {
-              try {
-                 while (true) {
-                     
-                    if (!pausa) {
-                       if (!pl.play(1)) {
-                          break;
-                       }
-                    }
-                 }
-              } catch (Exception e) {
-                 e.printStackTrace();
-              }
-           }
-        }.start();
+            new Thread() {
+               public void run() {
+                  try {
+                     while (true) {
+
+                        if (!pausa) {
+                           if (!pl.play(1)) {
+                              break;
+                           }
+                        }
+                     }
+                  } catch (Exception e) {
+                     e.printStackTrace();
+                  }
+               }
+            }.start();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Audio.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JavaLayerException ex) {
+            Logger.getLogger(Audio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
 
      }
 

@@ -67,7 +67,7 @@ public class MainView extends javax.swing.JFrame {
 
         jFileChooser1.setAcceptAllFileFilterUsed(false);
         jFileChooser1.setControlButtonsAreShown(false);
-        jFileChooser1.setCurrentDirectory(new java.io.File("E:\\Deezer\\mp3"));
+        jFileChooser1.setCurrentDirectory(new java.io.File("E:\\NetBeans\\DirectoRadio\\audios"));
         jFileChooser1.setDialogTitle("");
         jFileChooser1.setDragEnabled(true);
         jFileChooser1.setMultiSelectionEnabled(true);
@@ -121,7 +121,7 @@ public class MainView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        FileFilter audioFilter = new FileNameExtensionFilter("MP3 File","mp3");
+        FileFilter audioFilter = new FileNameExtensionFilter("Ficheros de sonido","mp3","wav","ogg","wma");
         jFileChooser1.addChoosableFileFilter(audioFilter);
         jFileChooser1.setFileFilter(audioFilter);
 
@@ -198,15 +198,7 @@ public class MainView extends javax.swing.JFrame {
     private void playListaReproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playListaReproActionPerformed
         
         
-        try {
-            a.reproducirMp3(ListaRepro.getSelectedValue());
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (JavaLayerException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        a.reproducir(ListaRepro.getSelectedValue());
         
         
     }//GEN-LAST:event_playListaReproActionPerformed
