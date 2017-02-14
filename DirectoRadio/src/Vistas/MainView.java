@@ -5,6 +5,7 @@
  */
 package Vistas;
 
+import directoradio.Language;
 import java.awt.List;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -21,19 +22,14 @@ import javax.swing.JList;
  */
 public class MainView extends javax.swing.JFrame {
 
+    Language lang = new Language("es");//Idioma por defecto
+    
     /**
      * Creates new form MainView
      */
     public MainView() {
         initComponents();
-        try {
-            setLanguage("es");
-            m_language_es.setSelected(true);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
     }
 
     /**
@@ -140,27 +136,17 @@ public class MainView extends javax.swing.JFrame {
 
     private void m_language_eusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_language_eusActionPerformed
         
-        try {
-            setLanguage("eus");
-            m_language_eus.setSelected(true);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        lang.setLanguage("eus");
+        m_language_eus.setSelected(true);
+        
         
     }//GEN-LAST:event_m_language_eusActionPerformed
 
     private void m_language_esActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_m_language_esActionPerformed
         
-        try {
-            setLanguage("es");
-            m_language_es.setSelected(true);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        lang.setLanguage("es");
+        m_language_es.setSelected(true);
         
     }//GEN-LAST:event_m_language_esActionPerformed
 
@@ -208,36 +194,12 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JMenu m_language;
-    private javax.swing.JCheckBoxMenuItem m_language_es;
-    private javax.swing.JCheckBoxMenuItem m_language_eus;
+    public static javax.swing.JMenu m_language;
+    public static javax.swing.JCheckBoxMenuItem m_language_es;
+    public static javax.swing.JCheckBoxMenuItem m_language_eus;
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 
-   private void setLanguage(String lng) throws FileNotFoundException, IOException {
-       
-        //Vaciamos los checks
-        m_language_es.setSelected(false);
-        m_language_eus.setSelected(false);
-        
-        //Leemos el fichero
-        BufferedReader in = new BufferedReader(new FileReader("languages/"+lng+".lng"));
-        String line;
-        while((line = in.readLine()) != null)
-        {
-            switch (line.split("=")[0]) {
-                case "m_language":
-                    m_language.setText(line.split("=")[1]); 
-                    break;
-                case "m_language_es":
-                    m_language_es.setText(line.split("=")[1]); 
-                    break;
-                case "m_language_eus":
-                    m_language_eus.setText(line.split("=")[1]); 
-                    break;
-            }
-        }
-        in.close();
-    }
+   
     
 }
