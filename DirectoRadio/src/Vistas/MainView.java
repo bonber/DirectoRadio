@@ -17,6 +17,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -57,6 +59,9 @@ public class MainView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jFileChooser1.setAcceptAllFileFilterUsed(false);
+        jFileChooser1.setControlButtonsAreShown(false);
+        jFileChooser1.setCurrentDirectory(new java.io.File("E:\\Deezer\\mp3"));
         jFileChooser1.setDialogTitle("");
         jFileChooser1.setDragEnabled(true);
         jFileChooser1.setMultiSelectionEnabled(true);
@@ -88,6 +93,10 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
+
+        FileFilter audioFilter = new FileNameExtensionFilter("MP3 File","mp3");
+        jFileChooser1.addChoosableFileFilter(audioFilter);
+        jFileChooser1.setFileFilter(audioFilter);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
