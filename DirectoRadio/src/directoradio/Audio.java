@@ -50,7 +50,6 @@ public class Audio {
           InterruptedException,
           JavaLayerException{
         
-        
         final Player pl = new Player(new FileInputStream(fichero));
 
         new Thread() {
