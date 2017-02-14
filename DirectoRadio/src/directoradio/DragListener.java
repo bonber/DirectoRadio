@@ -72,7 +72,7 @@ public class DragListener implements DropTargetListener  {
                     for(File file: files)
                     {
                         String path=file.getPath();
-                        addImage(path);
+                        addFile(path);
                     }
                     
                 }
@@ -83,6 +83,12 @@ public class DragListener implements DropTargetListener  {
         }
         
         
+    }
+    
+    //ADD IMAGES
+    private void addFile(String path){       
+        dm.addElement(path);
+        list.setModel(dm);
     }
     
     //ADD IMAGES
