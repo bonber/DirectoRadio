@@ -22,14 +22,14 @@ import javax.swing.JList;
  */
 public class MainView extends javax.swing.JFrame {
 
-    Language lang = new Language("es");//Idioma por defecto
+    Language lang;//Idioma por defecto
     
     /**
      * Creates new form MainView
      */
     public MainView() {
         initComponents();
-        
+        lang = new Language("es");
     }
 
     /**
