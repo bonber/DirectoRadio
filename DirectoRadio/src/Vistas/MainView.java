@@ -209,10 +209,9 @@ public class MainView extends javax.swing.JFrame {
     private java.awt.Panel panel1;
     // End of variables declaration//GEN-END:variables
 
-       private void connectToDragDrop()
-    {
+    private void connectToDragDrop(){
         DragListener d=new DragListener(jList1);
-        
+
          //SET TARGET TO JFRAME
         new DropTarget(jList1,d);
     }
