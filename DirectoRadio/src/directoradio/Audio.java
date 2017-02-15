@@ -6,6 +6,7 @@
 package directoradio;
 
 import Vistas.MainView;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -18,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
-
 /**
  *
  * @author bonber
@@ -30,7 +30,7 @@ public class Audio {
     public void reproducir(String fichero){
         int index = fichero.lastIndexOf('.');
         String ext =  fichero.substring(index + 1);
-        
+          
         switch (ext) {
             case "mp3":
                 reproducirMp3(fichero);
@@ -41,8 +41,9 @@ public class Audio {
             default:
                 JFrame frame = new JFrame();
                 JOptionPane.showMessageDialog(frame,
-    "Formato no soportado.");
+                "Formato no soportado.");
         }
+        
     }
     
     public void reproducirWav(String fichero){
