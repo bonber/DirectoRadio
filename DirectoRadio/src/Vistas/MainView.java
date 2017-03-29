@@ -50,12 +50,15 @@ public class MainView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTabbedPane1 = new javax.swing.JTabbedPane();
         panel1 = new java.awt.Panel();
         jFileChooser1 = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         ListaRepro = new javax.swing.JList<>();
         playListaRepro = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        button1 = new java.awt.Button();
+        jSlider1 = new javax.swing.JSlider();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -93,37 +96,50 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
+        button1.setLabel("Stop");
+
         javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(playListaRepro)
-                    .addComponent(jButton1))
-                .addGap(0, 66, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(playListaRepro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE))
+                    .addGroup(panel1Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jFileChooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
             .addGroup(panel1Layout.createSequentialGroup()
-                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 27, Short.MAX_VALUE))
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(playListaRepro)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(playListaRepro)
+                            .addComponent(jButton1))
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         FileFilter audioFilter = new FileNameExtensionFilter("Ficheros de sonido","mp3","wav","ogg","wma");
         jFileChooser1.addChoosableFileFilter(audioFilter);
         jFileChooser1.setFileFilter(audioFilter);
+
+        jTabbedPane1.addTab("lista", panel1);
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -160,14 +176,14 @@ public class MainView extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 224, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 36, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         pack();
@@ -253,12 +269,15 @@ public class MainView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JList<String> ListaRepro;
+    private java.awt.Button button1;
     private javax.swing.JButton jButton1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     public static javax.swing.JMenu m_language;
     public static javax.swing.JCheckBoxMenuItem m_language_es;
     public static javax.swing.JCheckBoxMenuItem m_language_eus;
